@@ -219,7 +219,7 @@ public class DispatchManager
             // check query execute permissions
             accessControl.checkCanExecuteQuery(sessionContext.getIdentity(), queryId);
 
-            // prepare query
+            // prepare query 内部会对 sql 做解析并生成 AST
             preparedQuery = queryPreparer.prepareQuery(session, query);
 
             // select resource group

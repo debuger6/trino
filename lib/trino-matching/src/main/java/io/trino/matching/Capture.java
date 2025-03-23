@@ -17,9 +17,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Capture<T>
 {
-    private static final AtomicInteger sequenceCounter = new AtomicInteger();
+    private static final AtomicInteger sequenceCounter = new AtomicInteger(); // 静态变量，属于类，每生成一个实例都会增1
 
-    private final String description;
+    private final String description; // 自定义描述，外部传入，方便人阅读
 
     public static <T> Capture<T> newCapture()
     {

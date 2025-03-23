@@ -240,7 +240,7 @@ public class LogicalPlanner
     {
         PlanNode root;
         try (var _ = scopedSpan(plannerContext.getTracer(), "plan")) {
-            root = planStatement(analysis, analysis.getStatement());
+            root = planStatement(analysis, analysis.getStatement()); // 遍历AST，生成逻辑计划
         }
 
         if (LOG.isDebugEnabled()) {
@@ -261,7 +261,7 @@ public class LogicalPlanner
         if (stage.ordinal() >= OPTIMIZED.ordinal()) {
             try (var _ = scopedSpan(plannerContext.getTracer(), "optimizer")) {
                 for (PlanOptimizer optimizer : planOptimizers) {
-                    root = runOptimizer(root, tableStatsProvider, optimizer);
+                    root = runOptimizer(root, tableStatsProvider, optimizer); // 优化逻辑计划
                 }
             }
         }

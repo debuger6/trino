@@ -495,7 +495,7 @@ public class SqlQueryExecution
                 stateMachine.getWarningCollector(),
                 planOptimizersStatsCollector,
                 tableStatsProvider);
-        Plan plan = logicalPlanner.plan(analysis);
+        Plan plan = logicalPlanner.plan(analysis); // 语义分析(Analysis)、生成执行计划LogicalPlan并优化执行计划
         queryPlan.set(plan);
 
         // fragment the plan

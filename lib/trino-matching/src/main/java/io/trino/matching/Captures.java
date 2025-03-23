@@ -20,9 +20,9 @@ public class Captures
 {
     private static final Captures NIL = new Captures(null, null, null);
 
-    private final Capture<?> capture;
-    private final Object value;
-    private final Captures tail;
+    private final Capture<?> capture; // 表示捕获的键
+    private final Object value; // 捕获的值，Object 类型也就是可以存任意类型的值
+    private final Captures tail; // 这个变量名取的不好，应该叫 next，指向下一个 Captures 对象
 
     private Captures(Capture<?> capture, Object value, Captures tail)
     {
@@ -55,10 +55,10 @@ public class Captures
         if (this.equals(NIL)) {
             throw new NoSuchElementException("Requested value for unknown Capture. Was it registered in the Pattern?");
         }
-        if (this.capture.equals(capture)) {
+        if (this.capture.equals(capture)) { // 找到了，则返回对应的 value
             return (T) value;
         }
-        return tail.get(capture);
+        return tail.get(capture); // 没找到则继续往下找
     }
 
     @Override
